@@ -70,7 +70,21 @@ scheduler.start()
 def home():
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     reflection = reflections.get(today, "")
-    return render_template('index.html', quote=daily_quote, reflection=reflection)
+
+    # Check if search parameters are passed
+    search_date = request.args.get('date')
+    search_result = None
+    if search_date:
+        search_result = reflections.get(search_date, "No reflection found for this date.")
+
+    return render_template('index.html',
+                           quote=daily_quote,
+                           reflection=reflection,
+                           today=today,
+                           search_result=search_result,
+                           search_date=search_date)
+
+
 
 @app.route('/api/quote', methods=['GET'])
 def get_quote():
@@ -93,6 +107,13 @@ def get_reflections():
 def get_reflection_by_date(date):
     reflection = reflections.get(date, "No reflection found for this date.")
     return jsonify({"date": date, "reflection": reflection})
+
+@app.route('/reflection/search', methods=['GET'])
+def search_reflection():
+    search_date = request.args.get('date')
+    search_result = reflections.get(search_date, "No reflection found for this date.")
+    return render_template('index.html', quote=daily_quote, reflection="", today=datetime.datetime.now().strftime("%Y-%m-%d"), search_result=search_result, search_date=search_date)
+
 
 if __name__ == '__main__':
     try:
