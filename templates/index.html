@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Quote and Reflection</title>
+</head>
+<body>
+<h1>Daily Quote</h1>
+<p><strong>Date:</strong> {{ today }}</p>
+<p>{{ quote }}</p>
+
+<h2>Your Reflection for Today</h2>
+<form action="/reflection" method="post">
+    <textarea name="reflection" rows="4" cols="50">{{ reflection }}</textarea><br>
+    <input type="submit" value="Save Reflection">
+</form>
+
+<h2>Look Up Past Reflections</h2>
+<form action="/reflection/search" method="get">
+    <label for="date">Enter Date (YYYY-MM-DD):</label>
+    <input type="text" id="date" name="date" placeholder="YYYY-MM-DD" required>
+    <input type="submit" value="Search Reflection">
+</form>
+
+{% if search_result %}
+    <h3>Reflection for {{ search_date }}:</h3>
+    <p>{{ search_result }}</p>
+{% endif %}
+</body>
+</html>
