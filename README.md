@@ -12,28 +12,28 @@ To containerize the application, I created a Dockerfile that established the env
 
 Key Improvements:
 
-	•	I configured Nginx to handle both HTTP and HTTPS traffic, enabling secure communication.
-	•	By using Nginx as a reverse proxy, I improved the application’s performance and security. This setup allows Nginx to manage SSL termination while directing traffic to the Gunicorn server running the Flask application.
+I configured Nginx to handle both HTTP and HTTPS traffic, enabling secure communication.
+By using Nginx as a reverse proxy, I improved the application’s performance and security. This setup allows Nginx to manage SSL termination while directing traffic to the Gunicorn server running the Flask application.
 
 Nginx Configuration
 
-I carefully crafted the Nginx configuration file to ensure proper handling of requests. I implemented redirection from HTTP to HTTPS, which enhances security by encrypting data in transit. Additionally, I set up SSL certificates to establish secure connections.
+I carefully crafted the Nginx configuration file to ensure proper request handling. I implemented redirection from HTTP to HTTPS, which enhances security by encrypting data in transit. Additionally, I set up SSL certificates to establish secure connections.
 
 Terraform Infrastructure
 
-Moving on to infrastructure management, I installed Terraform and configured my AWS credentials securely. I then began writing Terraform scripts to automate the provisioning of resources on AWS.
+Moving on to infrastructure management, I installed Terraform and securely configured my AWS credentials. I then began writing Terraform scripts to automate the provisioning of resources on AWS.
 
 Key Steps Taken:
 
-	•	I defined AWS as the provider and set up remote state storage using S3, coupled with DynamoDB for state locking. This approach ensures that the infrastructure state is managed reliably.
-	•	I created networking resources, including a VPC, public and private subnets, and security groups to control access.
-	•	I launched EC2 instances to host my Jenkins server and application servers, ensuring they were properly configured for my application’s needs.
+I defined AWS as the provider and set up remote state storage using S3 and DynamoDB for state locking. This approach ensures that the infrastructure state is managed reliably.
+To control access, I created networking resources, including a VPC, public and private subnets, and security groups.
+I launched EC2 instances to host my Jenkins server and application servers, ensuring they were properly configured for my application’s needs.
 
 Next Steps
 
 As I move forward with the project, my next steps include:
 
-	1.	Implementing continuous integration and deployment (CI/CD) pipelines with Jenkins.
-	2.	Setting up monitoring and logging to track the performance and health of my application and infrastructure.
-	3.	Exploring scaling options for the application to handle varying loads effectively.
-	4.	Enhancing security by reviewing IAM roles, policies, and security group settings to ensure adherence to best practices.
+1. Implementing continuous integration and deployment (CI/CD) pipelines with Jenkins.
+2. Setting up monitoring and logging to track the performance and health of my application and infrastructure.
+3. Exploring scaling options for the application to handle varying loads effectively.
+4. Enhancing security by reviewing IAM roles, policies, and security group settings to ensure adherence to best practices.
